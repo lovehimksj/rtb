@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<base href="/marketeer_app/">
+<head>
+    <meta charset="UTF-8">
+    <title>Uahoy Merchant</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0"/>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="lib/vendor/materialize/css/materialize.css" media="screen,projection">
+    <link rel="stylesheet" href="/lib/vendor/materialize/css/materialize.css" media="screen,projection">
+    <!--Import style.css-->
+    <link rel="stylesheet" href="lib/src/css/style.css" media="all">
+    <link rel="stylesheet" href="/lib/src/css/style.css" media="all">
+    <!--Import jQuery-->
+    <script type="text/javascript" src="lib/vendor/jquery/jquery.js"></script>
+    <!--Import materialize -->
+    <script type="text/javascript" src="lib/vendor/materialize/js/materialize.js"></script>
+    <!--Import Charts -->
+    <script type="text/javascript" src="lib/vendor/chart/js/chart.js"></script>
+
+    <meta name="apple-itunes-app" content="app-id=1234567890">
+    <meta name="HandheldFriendly" content="true">
+
+    <meta name="theme-color" content="#0288d1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Uahoy Merchant">
+    <link rel="manifest" href="../../manifest.json">
+
+</head>
+<body>
+<div class="navbar-fixed">
+    <nav id="headerNav" class="light-blue darken-2 nav-extended"></nav>
+</div>
+<main>
+
+    <div class="row">
+        <p class="dashboard_title orange-text font-size-16 text-accent-2">Currently Active Deals</p>
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image offer-card">
+                    <img src="http://lorempixel.com/800/400/food">
+                    <div class="card-title offer-title">
+                        <span class="offer-description font-size-12 weight-3 text-wrap">Get 30% Off on total Bill</span>
+                        <p class="orange-text text-darken-1 font-size-10 weight-3 left uppercase">Flat Off on All</p>
+                        <p class="green-text text-darken-1 font-size-10 weight-3 right">Active</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6">
+            <div class="card">
+                <div class="card-image offer-card">
+                    <img src="http://lorempixel.com/800/400/nightlife">
+                    <div class="card-title offer-title">
+                        <span class="offer-description font-size-12 weight-3 text-wrap">Buy 1 Get 1 Free</span>
+                        <p class="orange-text text-darken-1 font-size-10 weight-3 left uppercase">Buy & Get</p>
+                        <p class="green-text text-darken-1 font-size-10 weight-3 right">Active</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12">
+            <a class="waves-effect waves-gray btn-flat right transparent blue-grey-text" href="views/layouts/campaignList.html">View More</a>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <p class="dashboard_title orange-text font-size-16 text-accent-2">Merchant Account</p>
+        <div class="col s4">
+            <div class="card-panel states-card">
+                <p><span class="font-size-10 blue-grey-text">Rs.</span><span class="font-size-20 weight-5 cyan-text text-lighten-1">118</span></p>
+                <span class="font-size-10 weight-5 left subtitle blue-grey-text">Wallet Money</span>
+            </div>
+        </div>
+        <div class="col s4">
+            <div class="card-panel states-card">
+                <p><span class="font-size-20 weight-5 cyan-text text-lighten-1">82</span></p>
+                <span class="font-size-10 weight-5 left subtitle blue-grey-text"># Conversions</span>
+            </div>
+        </div>
+        <div class="col s4">
+            <div class="card-panel states-card">
+                <p><span class="font-size-10 blue-grey-text">Rs.</span><span class="font-size-20 weight-5 cyan-text text-lighten-1">21</span></p>
+                <span class="font-size-10 weight-5 left subtitle blue-grey-text">Recomd. Spend</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <p class="dashboard_title orange-text font-size-16 text-accent-2">Merchant Coupon Stats</p>
+        <div class="col s12">
+            <div class="row z-depth-1">
+                <ul id="tabs-swipe-demo1" class="tabs">
+                    <li class="tab col s3"><a class="active" href="#test-swipe-12">Generation</a></li>
+                    <li class="tab col s3"><a href="#test-swipe-22">Redemption</a></li>
+                    <!--<li class="tab col s3"><a href="#test-swipe-32">Spends</a></li>-->
+                </ul>
+                <div id="test-swipe-12" class="col s12 graph-card">
+                    <div id="container"></div>
+                    <script>
+                        Highcharts.chart('container', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                style: {
+                                    color: '#40c4ff',
+                                    font: 'Normal 1.0rem "Roboto"',
+                                    fontSize: '1.0rem',
+                                    fontWeight: 500
+                                },
+                                text: 'Weekly Coupon Generation',
+                                y: 20,
+                                x: 0
+                            },
+                            colors: ['#f48fb1', '#a5d6a7', '#b39ddb', '#ffab91', '#90caf9', '#ffd54f', '#c5e1a5', '#b0bec5', '#bcaaa4', '#9fa8da', '#f48fb1', '#ef9a9a'],
+                            xAxis: {
+                                categories: ['18 Apr', '19 Apr', '20 Apr', '21 Apr', '22 Apr', '23 Apr', '24 Apr'],
+                                labels: {
+                                    style: {
+                                        color: '#607d8b'
+                                    }
+                                }
+                            },
+                            yAxis: {
+                                title: {
+                                    text: '# Coupon Generated',
+                                    x: -5,
+                                    style: {
+                                        color: '#00bcd4',
+                                        font: 'Normal .75rem "Roboto"',
+                                        fontSize: '.75rem'
+                                    }
+                                },
+                                labels: {
+                                    align: 'left',
+                                    x: 0,
+                                    y: -2,
+                                    style: {
+                                        color: '#607d8b'
+                                    }
+                                },
+                                minorGridLineWidth: 1,
+                                gridLineWidth: 1,
+                                gridColor: '#607d8b'
+                            },
+                            plotOptions: {
+                                line: {
+                                    dataLabels: {
+                                        enabled: false
+                                    },
+                                    enableMouseTracking: false
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            series: [{
+                                name: '# Coupon Generation',
+                                data: [12,20,9,25,15,19,16]
+                            }]
+                        });
+
+                    </script>
+                </div>
+                <div id="test-swipe-22" class="col s12 graph-card">
+                    <div id="container1"></div>
+                    <script>
+                        Highcharts.chart('container1', {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                style: {
+                                    color: '#40c4ff',
+                                    font: 'Normal 1.0rem "Roboto"',
+                                    fontSize: '1.0rem',
+                                    fontWeight: 500
+                                },
+                                text: 'Weekly Coupon Redemption',
+                                y: 20,
+                                x: 0
+                            },
+                            colors: ['#80cbc4', '#f48fb1', '#a5d6a7', '#b39ddb', '#ffab91', '#90caf9', '#ffd54f', '#c5e1a5', '#b0bec5', '#bcaaa4', '#9fa8da', '#f48fb1', '#ef9a9a'],
+                            xAxis: {
+                                categories: ['18 Apr', '19 Apr', '20 Apr', '21 Apr', '22 Apr', '23 Apr', '24 Apr'],
+                                labels: {
+                                    style: {
+                                        color: '#607d8b'
+                                    }
+                                }
+                            },
+                            yAxis: {
+                                title: {
+                                    text: '# Coupon Redemption',
+                                    x: -5,
+                                    style: {
+                                        color: '#00bcd4',
+                                        font: 'Normal .75rem "Roboto"',
+                                        fontSize: '.75rem'
+                                    }
+                                },
+                                labels: {
+                                    align: 'left',
+                                    x: 0,
+                                    y: -2,
+                                    style: {
+                                        color: '#607d8b'
+                                    }
+                                },
+                                minorGridLineWidth: 1,
+                                gridLineWidth: 1,
+                                gridColor: '#607d8b'
+                            },
+                            plotOptions: {
+                                line: {
+                                    dataLabels: {
+                                        enabled: false
+                                    },
+                                    enableMouseTracking: false
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            series: [{
+                                name: '# Coupon Redeemed',
+                                data: [9, 7, 12, 6, 8, 6, 11]
+                            }]
+                        });
+
+                    </script>
+                </div>
+                <!--<div id="test-swipe-32" class="col s12 graph-card">
+                    <div id="container_32"></div>
+                    <script>
+                        Highcharts.chart('container_32', {
+                            chart: {
+                                type: 'line'
+                            },
+                            title: {
+                                style: {
+                                    color: '#40c4ff',
+                                    font: 'Normal 1.0rem "Roboto"',
+                                    fontSize: '1.0rem',
+                                    fontWeight: 500
+                                },
+                                text: 'Monthly Average Temperature',
+                                y: 20,
+                                x: 0
+                            },
+                            colors: ['#80cbc4', '#f48fb1', '#a5d6a7', '#b39ddb', '#ffab91', '#90caf9', '#ffd54f', '#c5e1a5', '#b0bec5', '#bcaaa4', '#9fa8da', '#f48fb1', '#ef9a9a'],
+                            xAxis: {
+                                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                labels: {
+                                    style: {
+                                        color: '#607d8b'
+                                    }
+                                }
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Temperature (°C)',
+                                    x: -5,
+                                    style: {
+                                        color: '#00bcd4',
+                                        font: 'Normal .75rem "Roboto"',
+                                        fontSize: '.75rem'
+                                    }
+                                },
+                                labels: {
+                                    align: 'left',
+                                    x: 0,
+                                    y: -2,
+                                    style: {
+                                        color: '#607d8b'
+                                    }
+                                },
+                                minorGridLineWidth: 1,
+                                gridLineWidth: 1,
+                                gridColor: '#607d8b'
+                            },
+                            plotOptions: {
+                                line: {
+                                    dataLabels: {
+                                        enabled: false
+                                    },
+                                    enableMouseTracking: false
+                                }
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            credits: {
+                                enabled: false
+                            },
+                            series: [{
+                                name: 'Tokyo',
+                                data: [1, 2, 3, 4]
+                            }, {
+                                name: 'London',
+                                data: [2, 3, 4, 5]
+                            }, {
+                                name: 'Tokyo',
+                                data: [3, 4, 5, 6]
+                            }, {
+                                name: 'London',
+                                data: [4, 5, 6, 7]
+                            }, {
+                                name: 'Tokyo',
+                                data: [5, 6, 7, 8]
+                            }, {
+                                name: 'London',
+                                data: [6, 7, 8, 9]
+                            }, {
+                                name: 'Tokyo',
+                                data: [1, 2, 3, 4]
+                            }, {
+                                name: 'London',
+                                data: [2, 3, 4, 5]
+                            }, {
+                                name: 'Tokyo',
+                                data: [3, 4, 5, 6]
+                            }, {
+                                name: 'London',
+                                data: [4, 5, 6, 7]
+                            }, {
+                                name: 'Tokyo',
+                                data: [5, 6, 7, 8]
+                            }, {
+                                name: 'London',
+                                data: [6, 7, 8, 9]
+                            }]
+                        });
+
+                    </script>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="page-footer grey darken-1" id="footer"></footer>
+
+
+<div id="textCoupon" class="modal">
+    <div class="modal-content deal-detail-modal-content">
+        <h5>Text Coupon</h5>
+        <p>Coupon is not valid</p>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action modal-close waves-effect waves-green btn-flat ">Check Next</button>
+    </div>
+</div>
+
+<div id="qrCodeCoupon" class="modal coupon-info-modal transparent">
+    <div class="modal-content deal-detail-modal-content">
+        <div class="camera-selection">
+            <select id="camera-select"></select>
+        </div>
+
+        <div class="well" style="position: relative;display: inline-block;">
+            <!--<span class="font-size-16">Scan QR Code</span>-->
+            <canvas id="webcodecam-canvas" style="width: 100%; height: 100%"></canvas>
+            <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
+            <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
+            <div class="scanner-laser laser-leftBottom" style="opacity: 0.5;"></div>
+            <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
+        </div>
+
+
+
+        <div class="thumbnail" id="result">
+            <p class="white-text" id="scanned-QR"></p>
+        </div>
+
+
+
+    </div>
+    <div class="modal-footer">
+        <!--<button class="modal-action waves-effect waves-green btn-flat ">Check Coupon</button>-->
+        <button id="stop" class="btn-floating modal-action modal-close waves-effect waves-green btn-flat white-text"><i class="material-icons">close</i></button>
+    </div>
+</div>
+
+
+
+
+
+<!--Import tiles -->
+<script type="text/javascript" src="lib/src/js/tile.js"></script>
+<script type="text/javascript" src="lib/src/js/custom.js"></script>
+
+<!--<script type="text/javascript" src="lib/vendor/webcodecamjs/filereader.js"></script>
+<script type="text/javascript" src="lib/vendor/webcodecamjs/qrcodelib.js"></script>
+<script type="text/javascript" src="lib/vendor/webcodecamjs/webcodecamjquery.js"></script>
+<script type="text/javascript" src="lib/vendor/webcodecamjs/mainjquery.js"></script>-->
+
+<script>
+
+    $(document).ready(function(){
+
+        $('ul.tabs').tabs();
+        if ($('#tabs-swipe-demo').length) {
+            $('#tabs-swipe-demo').tabs({ 'swipeable': true });
+        }
+        if ($('#tabs-swipe-demo1').length) {
+            $('#tabs-swipe-demo1').tabs({ 'swipeable': true });
+        }
+    });
+</script>
+
+</body>
+</html>

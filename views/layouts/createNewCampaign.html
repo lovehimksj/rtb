@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<base href="/marketeer_app/">
+<head>
+    <meta charset="UTF-8">
+    <title>Uahoy Merchant</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0"/>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="lib/vendor/materialize/css/materialize.css" media="screen,projection">
+    <link rel="stylesheet" href="/lib/vendor/materialize/css/materialize.css" media="screen,projection">
+    <!--Import style.css-->
+    <link rel="stylesheet" href="lib/src/css/style.css" media="all">
+    <link rel="stylesheet" href="/lib/src/css/style.css" media="all">
+    <!--Import jQuery-->
+    <script type="text/javascript" src="lib/vendor/jquery/jquery.js"></script>
+    <!--Import materialize -->
+    <script type="text/javascript" src="lib/vendor/materialize/js/materialize.js"></script>
+    <!--Import Charts -->
+    <script type="text/javascript" src="lib/vendor/chart/js/chart.js"></script>
+
+    <script type="text/javascript" src="lib/vendor/timepicker/js/timepicker.js"></script>
+
+    <link rel="stylesheet" href="lib/vendor/timepicker/css/datepicker.css">
+
+    <script type="text/javascript" src="lib/src/js/dateFormat.js"></script>
+
+    <meta name="apple-itunes-app" content="app-id=1234567890">
+    <meta name="HandheldFriendly" content="true">
+
+    <meta name="theme-color" content="#0589ca">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Uahoy Merchant">
+    <link rel="manifest" href="manifest.json">
+
+</head>
+<body>
+<div class="navbar-fixed">
+    <nav id="headerNav" class="light-blue darken-2 nav-extended"></nav>
+</div>
+<main>
+    <div class="row">
+        <div class="col s12">
+            <div id="offerImage" class="card-panel create-campaign-card">
+                <div class="row filter-type">
+                    <div class="input-field col s12">
+                        <select id="bcat">
+                            <option value="1" selected>Food</option>
+                            <option value="2">Shopping</option>
+                            <option value="3">Travel</option>
+                        </select>
+                        <label class="font-size-12 grey-text">Pick an image for your offer</label>
+                    </div>
+                </div>
+                <div class="row image-row">
+                    <div class="col s6 center-align deal-image-container">
+                        <input type="radio" name="imageSelection" onchange="selectOfferImage(this)">
+                        <label>
+                            <img src="assets/dealImage/123.jpg" alt="">
+                        </label>
+                    </div>
+
+                    <div class="col s6 center-align deal-image-container">
+                        <input type="radio" name="imageSelection" onchange="selectOfferImage(this)">
+                        <label>
+                            <img src="assets/dealImage/8.jpg" alt="">
+                        </label>
+                    </div>
+
+                    <div class="col s6 center-align deal-image-container">
+                        <input type="radio" name="imageSelection" onchange="selectOfferImage(this)">
+                        <label>
+                            <img src="assets/dealImage/kerala-thali.jpg" alt="">
+                        </label>
+                    </div>
+
+                    <div class="col s6 center-align deal-image-container">
+                        <input type="radio" name="imageSelection" onchange="selectOfferImage(this)">
+                        <label>
+                            <img src="assets/dealImage/pizza.jpg" alt="">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="carousel-fixed-item center">
+                    <div class="input-field col s6 left-align">
+                        <button class="btn waves-effect waves-light teal darken-3 font-size-12" type="button" name="selectImage" onclick="UloadImage(this)">Upload Image</button>
+                        <input style="display: none;" type="file" id="uploadImageInput">
+                    </div>
+                    <div class="input-field col s6 right-align">
+                        <button class="btn waves-effect white-text darken-text-2 amber font-size-12" type="button" name="action" onclick="skipToNext('offerImage','offerType')">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="offerType" style="display: none;" class="card-panel create-campaign-card">
+                <div class="input-field col s12">
+                    <select onchange="selectDealType(this)">
+                        <option value="" disabled selected>Select Deal Type</option>
+                        <option value="Buy X get Y Free">Buy X get Y Free</option>
+                        <option value="Buy X get X Free">Buy X get X Free</option>
+                        <option value="Flat Off">Flat Off</option>
+                    </select>
+                    <label class="font-size-12 grey-text">Deal type</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <label for="textarea1" class="font-size-12 grey-text">Deal Description</label>
+                </div>
+
+                <div class="col s6">
+                    <input name="group1" class="with-gap" type="radio" id="test1" onchange="selectConditionType(this)" value="0"/>
+                    <label for="test1" class="font-size-14 blue-grey-text">Standard T&C</label>
+                </div>
+
+                <div class="col s6">
+                    <input name="group1" class="with-gap" type="radio" id="test2" onchange="selectConditionType(this)" value="1"/>
+                    <label for="test2" class="font-size-14 blue-grey-text">Custom T&C</label>
+                </div>
+
+                <div class="input-field col s6 left-align">
+                    <button class="btn waves-effect waves-light teal darken-3 font-size-12" type="button" name="selectImage" onclick="skipToNext('offerType','offerImage')">Previous</button>
+                </div>
+                <div class="input-field col s6 right-align">
+                    <button class="btn waves-effect white-text darken-text-2 amber font-size-12" type="button" name="action" onclick="skipToNext('offerType','branchesList')">Next</button>
+                </div>
+
+            </div>
+
+            <div id="branchesList" style="display: none;" class="card-panel create-campaign-card">
+
+                <div class="input-field col s12">
+                    <select class="">
+                        <option value="1" selected>0.5 KM</option>
+                        <option value="2">1.0 KM</option>
+                        <option value="3">1.5 KM</option>
+                        <option value="3">2.0 KM</option>
+                        <option value="3">2.5 KM</option>
+                        <option value="3">3.0 KM</option>
+                    </select>
+                    <label class="font-size-14 grey-text">Set Promotion Radius</label>
+                </div>
+
+                <ul class="collection with-header">
+                    <li class="collection-header"><span class="font-size-16 blue-grey-text">Branches</span></li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" class="filled-in" id="filled-in-box" onchange="selectAll(this)" checked/>
+                        <label for="filled-in-box" class="grey-text text-lighten-1">Select All Branches</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box1"/>
+                        <label for="filled-in-box1" class="grey-text text-lighten-1">Branch 1</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box2"/>
+                        <label for="filled-in-box2" class="grey-text text-lighten-1">Branch 2</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box3"/>
+                        <label for="filled-in-box3" class="grey-text text-lighten-1">Branch 3</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box4"/>
+                        <label for="filled-in-box4" class="grey-text text-lighten-1">Branch 4</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box5"/>
+                        <label for="filled-in-box5" class="grey-text text-lighten-1">Branch 5</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box6"/>
+                        <label for="filled-in-box6" class="grey-text text-lighten-1">Branch 6</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box7"/>
+                        <label for="filled-in-box7" class="grey-text text-lighten-1">Branch 7</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box8"/>
+                        <label for="filled-in-box8" class="grey-text text-lighten-1">Branch 8</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box9"/>
+                        <label for="filled-in-box9" class="grey-text text-lighten-1">Branch 9</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box10"/>
+                        <label for="filled-in-box10" class="grey-text text-lighten-1">Branch 10</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box11"/>
+                        <label for="filled-in-box11" class="grey-text text-lighten-1">Branch 11</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box12"/>
+                        <label for="filled-in-box12" class="grey-text text-lighten-1">Branch 12</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box13"/>
+                        <label for="filled-in-box13" class="grey-text text-lighten-1">Branch 13</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box14"/>
+                        <label for="filled-in-box14" class="grey-text text-lighten-1">Branch 14</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box15"/>
+                        <label for="filled-in-box15" class="grey-text text-lighten-1">Branch 15</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box16"/>
+                        <label for="filled-in-box16" class="grey-text text-lighten-1">Branch 16</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box17"/>
+                        <label for="filled-in-box17" class="grey-text text-lighten-1">Branch 17</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box18"/>
+                        <label for="filled-in-box18" class="grey-text text-lighten-1">Branch 18</label>
+                    </li>
+
+                    <li class="collection-item branchListItem">
+                        <input type="checkbox" name="branchList" class="filled-in" id="filled-in-box19"/>
+                        <label for="filled-in-box19" class="grey-text text-lighten-1">Branch 19</label>
+                    </li>
+
+
+                </ul>
+
+                <div class="input-field col s6 left-align">
+                    <button class="btn waves-effect waves-light teal darken-3 font-size-12" type="button" name="selectImage" onclick="skipToNext('branchesList','offerType')">Previous</button>
+                </div>
+                <div class="input-field col s6 right-align">
+                    <button class="btn waves-effect white-text darken-text-2 amber font-size-12" type="button" name="action" onclick="skipToNext('branchesList','validity')">Next</button>
+                </div>
+            </div>
+
+            <div id="validity" style="display: none;" class="card-panel create-campaign-card">
+
+                <div class="input-field col s6">
+                    <label for="startDate" class="font-size-12 grey-text">Start Date</label>
+                    <input id="startDate" type="text" class="datepicker picker__input font-size-14 blue-grey-text">
+                </div>
+                <script>
+                    var date = new  Date();
+                    var dateString = date.format("dd mmmm, yyyy");
+                    document.getElementById('startDate').value = dateString;
+                </script>
+                <div class="input-field col s6">
+                    <label for="endDate" class="font-size-12 grey-text">End Date</label>
+                    <input id="endDate" type="text" class="datepicker picker__input font-size-14 blue-grey-text">
+                </div>
+
+                <script>
+                    var date = new  Date();
+                    var dateString = date.format("dd mmmm, yyyy");
+                    document.getElementById('endDate').value = dateString;
+                </script>
+
+                <div class="input-field col s6">
+                    <label for="fromTime" class="font-size-12 grey-text">Start Time</label>
+                    <input id="fromTime" class="timepicker font-size-14 blue-grey-text" type="time">
+                </div>
+
+                <div class="input-field col s6">
+                    <label for="toTime" class="font-size-12 grey-text">End Time</label>
+                    <input id="toTime" class="timepicker font-size-14 blue-grey-text" type="time">
+                </div>
+
+                <div class="col s12">
+                    <p class="blue-grey-text font-size-16 weight-4">Days</p>
+                    <div class="checkBoxes">
+                        <input type="checkbox" class="filled-in" id="Sun" checked="checked" />
+                        <label for="Sun">Sun</label>
+                    </div>
+
+                    <div class="checkBoxes">
+                        <input type="checkbox" class="filled-in" id="Mon" checked="checked" />
+                        <label for="Mon">Mon</label>
+                    </div>
+
+                    <div class="checkBoxes">
+                        <input type="checkbox" class="filled-in" id="Tue" checked="checked" />
+                        <label for="Tue">Tue</label>
+                    </div>
+
+                    <div class="checkBoxes">
+                        <input type="checkbox" class="filled-in" id="Wed" checked="checked" />
+                        <label for="Wed">Wed</label>
+                    </div>
+
+                    <div class="checkBoxes">
+                        <input type="checkbox" class="filled-in" id="Thu" checked="checked" />
+                        <label for="Thu">Thu</label>
+                    </div>
+
+                    <div class="checkBoxes">
+                        <input type="checkbox" class="filled-in" id="Fri" checked="checked" />
+                        <label for="Fri">Fri</label>
+                    </div>
+
+                    <div class="checkBoxes">
+                        <input type="checkbox" class="filled-in" id="Sat" checked="checked" />
+                        <label for="Sat">Sat</label>
+                    </div>
+
+                </div>
+                <!--<div class="input-field col s12" id="timingRow">-->
+
+                <!--</div>-->
+
+                <div class="input-field col s6 left-align">
+                    <button class="btn waves-effect waves-light teal darken-3 font-size-12" type="button" name="selectImage" onclick="skipToNext('validity','branchesList')">Previous</button>
+                </div>
+                <div class="input-field col s6 right-align">
+                    <button class="btn waves-effect white-text darken-text-2 amber font-size-12" type="button" name="action" onclick="skipToNext('validity','coupon_type')">Next</button>
+                </div>
+            </div>
+
+            <div id="coupon_type" style="display: none;" class="card-panel create-campaign-card">
+
+                <p class="blue-grey-text font-size-16 weight-4">Coupon type</p>
+
+                <div class="col s4">
+                    <input class="with-gap" name="ctype" type="radio" id="internal" onchange="setCouponType(this.id)" checked/>
+                    <label for="internal" class="font-size-12">Internal</label>
+                </div>
+                <div class="col s4">
+                    <input class="with-gap" name="ctype" type="radio" id="external" onchange="setCouponType(this.id)"/>
+                    <label for="external" class="font-size-12">External</label>
+                </div>
+                <div class="col s4">
+                    <input class="with-gap" name="ctype" type="radio" id="fixed" onchange="setCouponType(this.id)"/>
+                    <label for="fixed" class="font-size-12">Fixed</label>
+                </div>
+
+
+                <div class="input-field col s12 coupon-types" id="couponPrefix" data-target="internal">
+                    <input id="coupon_prefix" type="text" class="" value="AH" readonly>
+                    <label for="coupon_prefix">Coupon Prefix</label>
+                </div>
+                <div class="input-field col s12 coupon-types" id="couponUrl" data-target="external" style="display: none;">
+                    <input id="coupon_url" type="text" class="validate">
+                    <label for="coupon_url">Coupon Url</label>
+                </div>
+                <div class="input-field col s12 coupon-types" id="dealCode" data-target="external" style="display: none;">
+                    <input id="deal_code" type="text" class="validate">
+                    <label for="deal_code">Deal Code</label>
+                </div>
+                <div class="input-field col s12 coupon-types" id="couponCode" data-target="fixed" style="display: none;">
+                    <input id="coupon_code" type="text" class="validate">
+                    <label for="coupon_code">Coupon Code</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <input id="last_name" type="tel" class="validate font-size-14 blue-grey-text">
+                    <label for="last_name" class="font-size-12 grey-text">Maximum No of Generation</label>
+                </div>
+                <div class="input-field col s6 left-align">
+                    <button class="btn waves-effect waves-light teal darken-3 font-size-12" type="button" name="selectImage" onclick="skipToNext('coupon_type','validity')">Previous</button>
+                </div>
+                <div class="input-field col s6 right-align">
+                    <button class="btn waves-effect white-text darken-text-2 amber font-size-12" type="button" name="action" onclick="skipToNext('coupon_type','communication_mode')">Next</button>
+                </div>
+            </div>
+
+            <div id="communication_mode" style="display: none;" class="card-panel create-campaign-card">
+
+                <span class="blue-grey-text font-size-16 weight-4">Mode of Communication</span>
+
+                <ul class="collection with-header">
+                    <li class="collection-item">
+                        <div>Banner Ad
+                            <span class="secondary-content">
+                                    <div class="switch">
+                                        <label>
+                                            Off
+                                            <input type="checkbox">
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </span>
+                        </div>
+                    </li>
+                    <li class="collection-item">
+                        <div>Push Notification
+                            <span class="secondary-content">
+                                    <div class="switch">
+                                        <label>
+                                            Off
+                                            <input type="checkbox">
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </span>
+                        </div>
+                    </li>
+                    <li class="collection-item">
+                        <div>SMS Push
+                            <span class="secondary-content">
+                                    <div class="switch">
+                                        <label>
+                                            Off
+                                            <input type="checkbox">
+                                            <span class="lever"></span>
+                                            On
+                                        </label>
+                                    </div>
+                                </span>
+                        </div>
+                    </li>
+                </ul>
+
+
+                <div class="input-field col s6 left-align">
+                    <button class="btn waves-effect waves-light teal darken-3 font-size-12" type="button" name="selectImage" onclick="skipToNext('communication_mode','coupon_type')">Previous</button>
+                </div>
+                <div class="input-field col s6 right-align">
+                    <button class="btn waves-effect white-text darken-text-2 amber font-size-12" type="button" name="action" onclick="skipToNext('communication_mode','preview')">Next</button>
+                </div>
+            </div>
+
+            <div id="preview" style="display: none;" class="row">
+
+                <p class="blue-grey-text font-size-16 weight-4">Preview of offer</p>
+
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light previewCard">
+                        <img class="activator" src="http://lorempixel.com/800/400/food">
+                    </div>
+                    <div class="card-tabs">
+                        <ul class="tabs tabs-fixed-width">
+                            <li class="tab"><a href="#Info" class="active">Info</a></li>
+                            <li class="tab"><a href="#Coupon">Coupon</a></li>
+                            <li class="tab"><a href="#tnc">T&C</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-content white lighten-4">
+                        <div id="Info">
+                            <h4 class="blue-grey-text font-size-16">Desi Vibes - Indian cuisine Indian Style-UP dasd asdas ad asd</h4>
+                            <p class="grey-text text-lighten-1 font-size-14 weight-3">Get 30% Off on total Food Bill Get 30% Off on total Food Bill Desi Vibes - Indian cuisine Indian Style-UP
+                                Get 30% Off on total Food Bill Get 30% Off on total Food Bill Desi Vibes - Indian cuisine Indian Style-UP</p>
+                        </div>
+                        <div id="Coupon">
+                            <h4 class="blue-grey-text font-size-16">Your unique coupon code</h4>
+
+                            <span class="coupon-container">
+                                <h5 data-target="text" class="center-align font-size-14 grey-text weight-4 coupon-types">AHXXXXXXXX</h5>
+                                <img data-target="barcode" style="width: 100%; display: none;" class="coupon-types" src="https://help.shopify.com/assets/images/manual/sell-in-person/hardware/barcode-scanner/1d-barcode.png?1492809895" alt="">
+                                <img data-target="qrcode" style="width: 100%; display: none;" class="coupon-types" src="http://cdnqrcgde.s3-eu-west-1.amazonaws.com/wp-content/uploads/2013/11/jpeg.jpg" alt="">
+                            </span>
+
+                            <div class="input-field" style="margin: 40px auto 0; width: 200px;">
+                                <select onchange="setCouponType(this.value)">
+                                    <option value="text" selected>Text Coupon</option>
+                                    <option value="barcode">Bar Code</option>
+                                    <option value="qrcode">QR Code</option>
+                                </select>
+                                <label>Select Coupon Type</label>
+                            </div>
+                        </div>
+                        <div id="tnc">
+                            <h4 class="blue-grey-text font-size-16">Terms & Condition</h4>
+                            <ul class="tnclist font-size-12 grey-text text-lighten-1">
+                                <li>Show Coupon Code (wherever provided) to avail the Offer</li>
+                                <li>Can't be combined with any other existing offers/ promotions</li>
+                                <li>Only one Coupon applies for a Mobile Number /Registered User</li>
+                                <li>Coupon Code is Non Transferable and can be consumed once only</li>
+                                <li>Deal provider reserves the rights to Alter/Stop the Offer at any time. You are advised to Kindly Call &amp; Check the outlet before availing the coupon.</li>
+                                <li>Ahoy can't be held responsible, if the Coupon can't be availed because of any reason.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                    </div>
+                </div>
+
+                <p class="blue-grey-text font-size-16 weight-4">Banner ads for Mobile</p>
+                <div class="row">
+                    <div class="col s12 m5">
+                        <div class="card-panel card preview-card">
+                            <div class="card-image">
+                                <img width="100%" src="http://lorempixel.com/320/50/food">
+                                <span class="card-title mobile-banner-title">Get 30% Off on total Food Bill Get 30% Off on total Food Bill</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="blue-grey-text font-size-16 weight-4">Banner ads for Tablet</p>
+                <div class="row">
+                    <div class="col s12 m5">
+                        <div class="card-panel card preview-card">
+                            <div class="card-image">
+                                <img width="100%" src="http://lorempixel.com/300/250/food">
+                                <span class="card-title tablet-banner-title">Get 30% Off on total Food Bill Get 30% Off on total Food Bill</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="input-field col s6 left-align">
+                    <button class="btn waves-effect waves-light teal darken-3 font-size-12" type="button" name="selectImage" onclick="skipToNext('preview','communication_mode')">Previous</button>
+                </div>
+                <div class="input-field col s6 right-align">
+                    <button class="btn waves-effect white-text darken-text-2 amber font-size-12" type="button" name="action">Save</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer class="page-footer grey darken-1" id="footer"></footer>
+
+
+<div id="confirmationModal" class="modal confirm-modal">
+    <div class="modal-content">
+        <h5>Lorem Ipsum</h5>
+        <span>
+				Do you want to save it or continue to create deal?
+			</span>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat" data-target="dealTiming">Continue</button>
+        <button class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+    </div>
+</div>
+
+<div id="tncModal" class="modal">
+    <div class="modal-content">
+        <h5>Terms & Condition</h5>
+        <div class="">
+            <ul class="tnclist" id="noeditable">
+                <li>Show Coupon Code (wherever provided) to avail the Offer</li>
+                <li>Can't be combined with any other existing offers/ promotions</li>
+                <li>Only one Coupon applies for a Mobile Number /Registered User</li>
+                <li>Coupon Code is Non Transferable and can be consumed once only</li>
+                <li>Deal provider reserves the rights to Alter/Stop the Offer at any time. You are advised to Kindly Call & Check the outlet before availing the coupon.</li>
+                <li>Ahoy can't be held responsible, if the Coupon can't be availed because of any reason.</li>
+            </ul>
+
+            <div id="editable">
+                <div class="conditionList">
+                    <input type="checkbox" id="test12"  class="filled-in" checked/>
+                    <label for="test12" class="conditionLabel"><input type="text" class="font-size-10" value="Show Coupon Code (wherever provided) to avail the Offer"></label>
+                </div>
+
+                <div class="conditionList">
+                    <input type="checkbox" id="test22" class="filled-in" checked/>
+                    <label for="test22" class="conditionLabel"><input type="text" class="font-size-10" value="Show Coupon Code (wherever provided) to avail the Offer"></label>
+                </div>
+
+                <div class="conditionList">
+                    <input type="checkbox" id="test3" class="filled-in" checked/>
+                    <label for="test3" class="conditionLabel"><input type="text" class="font-size-10" value="Show Coupon Code (wherever provided) to avail the Offer"></label>
+                </div>
+
+                <div class="conditionList">
+                    <input type="checkbox" id="test4" class="filled-in" checked/>
+                    <label for="test4" class="conditionLabel"><input type="text" class="font-size-10" value="Show Coupon Code (wherever provided) to avail the Offer"></label>
+                </div>
+
+                <div class="conditionList">
+                    <input type="checkbox" id="test5" class="filled-in" checked/>
+                    <label for="test5" class="conditionLabel"><input type="text" class="font-size-10" value="Show Coupon Code (wherever provided) to avail the Offer"></label>
+                </div>
+
+                <div class="conditionList">
+                    <input type="checkbox" id="test6" class="filled-in" checked/>
+                    <label for="test6" class="conditionLabel"><input type="text" class="font-size-10" value="Show Coupon Code (wherever provided) to avail the Offer"></label>
+                </div>
+            </div>
+
+            <!--<textarea id="tnc" class="materialize-textarea"></textarea>-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action waves-effect waves-green btn-flat">Continue</button>
+        <button class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+    </div>
+</div>
+
+
+<div id="textCoupon" class="modal">
+    <div class="modal-content deal-detail-modal-content">
+        <h5>Text Coupon</h5>
+        <p>Coupon is not valid</p>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action modal-close waves-effect waves-green btn-flat ">Check Next</button>
+    </div>
+</div>
+
+<div id="qrCodeCoupon" class="modal coupon-info-modal transparent">
+    <div class="modal-content deal-detail-modal-content">
+        <div class="camera-selection">
+            <select id="camera-select"></select>
+        </div>
+
+        <div class="well" style="position: relative;display: inline-block;">
+            <!--<span class="font-size-16">Scan QR Code</span>-->
+            <canvas id="webcodecam-canvas" style="width: 100%; height: 100%"></canvas>
+            <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
+            <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
+            <div class="scanner-laser laser-leftBottom" style="opacity: 0.5;"></div>
+            <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
+        </div>
+
+
+
+        <div class="thumbnail" id="result">
+            <p class="white-text" id="scanned-QR"></p>
+        </div>
+
+
+
+    </div>
+    <div class="modal-footer">
+        <!--<button class="modal-action waves-effect waves-green btn-flat ">Check Coupon</button>-->
+        <button id="stop" class="btn-floating modal-action modal-close waves-effect waves-green btn-flat white-text"><i class="material-icons">close</i></button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+        $('.campaign-info-modal').modal({
+            startingTop: '0%',
+            endingTop: '0%'
+        });
+        $('.confirm-modal').modal({
+            endingTop: '25%'
+        });
+
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
+        $('select').material_select();
+
+        $('.timepicker').pickatime({
+            default: 'now',
+            min:[18,00],
+            twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
+            donetext: 'OK',
+            autoclose: false,
+            vibrate: true // vibrate the device when dragging clock hand
+        });
+    });
+</script>
+
+<!--Import tiles -->
+<script type="text/javascript" src="lib/src/js/tile.js"></script>
+<script type="text/javascript" src="lib/src/js/custom.js"></script>
+
+<script>
+
+</script>
+</body>
+</html>

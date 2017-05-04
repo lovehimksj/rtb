@@ -1,0 +1,72 @@
+<div  class="nav-wrapper app-nav">
+    <a href="#!" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <span class="font-size-18">Merchant</span>
+    <!--<ul class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+    </ul>-->
+    <ul id="mobile-demo" class="side-nav">
+        <li>
+            <div class="userView">
+                <div class="background">
+                    <img src="assets/images/background/office.jpg">
+                </div>
+                <a><img class="circle" src="assets/images/userProfile/yuna.jpg"></a>
+                <a><span class="white-text name">Demo Merchant</span></a>
+                <a><span class="white-text email">demo@ahoy.co.in</span></a>
+            </div>
+        </li>
+        <li><a class="subheader">Campaign</a></li>
+        <li><a class="waves-effect" href="views/layouts/dashboard.html"><i class="material-icons">dashboard</i>Dashboard</a>
+        </li>
+        <li><a class="waves-effect" href="views/layouts/campaignList.html"><i class="material-icons">list</i>Campaign
+            List</a></li>
+        <li><a class="waves-effect" href="views/layouts/createNewCampaign.html"><i class="material-icons">playlist_add</i>Create
+            New Campaign</a></li>
+        <li><a class="waves-effect" href="views/layouts/redeemCoupon.html"><i class="material-icons">redeem</i>Redeem Coupon</a>
+        <li><a class="waves-effect" href="views/layouts/settings.html"><i class="material-icons">settings</i>Advanced Setting</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a class="subheader">User</a></li>
+        <li><a class="waves-effect">Profile</a></li>
+        <li><a class="waves-effect">Sign out</a></li>
+        <!--<a href="index.html" class="brand-logo"><img class="app-logo" src="assets/icon/logo/uahoy.png" alt="marketeer logo"></a>-->
+    </ul>
+</div>
+
+<div class="nav-content">
+    <div class="custom-button round-icon">
+        <a class="btn-floating btn-flat waves-effect waves-light transparent" id="play" onclick="checkCoupon(1)"><i class="material-icons white-text">camera</i></a>
+    </div>
+    <div class="custom-input">
+        <input id="text_coupon" type="text" class="validate weight-3 white-text" placeholder="Check text coupon" autocomplete="off">
+    </div>
+    <div class="custom-button round-icon">
+        <a class="btn-floating btn-flat waves-effect waves-light transparent" onclick="checkCoupon(0)"><i class="material-icons white-text darken-1">redeem</i></a>
+    </div>
+
+</div>
+
+    <div class="fixed-action-btn vertical click-to-toggle">
+        <a class="btn-floating btn-large light-blue" href="views/layouts/createNewCampaign.html">
+            <i class="material-icons">playlist_add</i>
+        </a>
+    </div>
+
+<!--<ul class="side-nav" id="mobile-demo">
+	<li><a href="sass.html">Sass</a></li>
+	<li><a href="badges.html">Components</a></li>
+	<li><a href="collapsible.html">Javascript</a></li>
+	<li><a href="mobile.html">Mobile</a></li>
+</ul>-->
+<script type="text/javascript" src="lib/vendor/webcodecamjs/filereader.js"></script>
+<script type="text/javascript" src="lib/vendor/webcodecamjs/qrcodelib.js"></script>
+<script type="text/javascript" src="lib/vendor/webcodecamjs/webcodecamjquery.js"></script>
+<script type="text/javascript" src="lib/vendor/webcodecamjs/mainjquery.js"></script>
+<script>
+    $(".button-collapse").sideNav();
+</script>

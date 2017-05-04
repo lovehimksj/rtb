@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<base href="/marketeer_app/">
+<head>
+    <meta charset="UTF-8">
+    <title>Uahoy Merchant</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0"/>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="lib/vendor/materialize/css/materialize.css" media="screen,projection">
+    <link rel="stylesheet" href="/lib/vendor/materialize/css/materialize.css" media="screen,projection">
+    <!--Import style.css-->
+    <link rel="stylesheet" href="lib/src/css/style.css" media="all">
+    <link rel="stylesheet" href="/lib/src/css/style.css" media="all">
+    <!--Import jQuery-->
+    <script type="text/javascript" src="lib/vendor/jquery/jquery.js"></script>
+    <!--Import materialize -->
+    <script type="text/javascript" src="lib/vendor/materialize/js/materialize.js"></script>
+    <!--Import Charts -->
+    <script type="text/javascript" src="lib/vendor/chart/js/chart.js"></script>
+
+
+    <script type="text/javascript" src="lib/vendor/timepicker/js/timepicker.js"></script>
+
+    <link rel="stylesheet" href="lib/vendor/timepicker/css/datepicker.css">
+
+    <meta name="apple-itunes-app" content="app-id=1234567890">
+    <meta name="HandheldFriendly" content="true">
+
+    <meta name="theme-color" content="#0288d1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Uahoy Merchant">
+    <link rel="manifest" href="manifest.json">
+
+</head>
+<body>
+<div class="navbar-fixed">
+    <nav id="headerNav" class="light-blue darken-2 nav-extended"></nav>
+</div>
+<main>
+    <div class="spacer-16"></div>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="z-depth-2 col s12 white">
+                    <p class="blue-grey-text font-size-16 weight-4">Store Timing</p>
+
+                    <div class="input-field col s6">
+                        <input id="openingTime" class="timepicker font-size-14 blue-grey-text" type="time">
+                        <label for="openingTime" class="font-size-12 grey-text">Opening Time</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="closingTime" class="timepicker font-size-14 blue-grey-text" type="time">
+                        <label for="closingTime" class="font-size-12 grey-text">Closing Time</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="z-depth-2 col s12 white">
+                    <p class="blue-grey-text font-size-16 weight-4">Merchant Address</p>
+
+                    <div class="col s12">
+                        <img width="100%" src="http://maps.googleapis.com/maps/api/staticmap?center=B-13%20Sector%2064%20Noida&zoom=13&scale=false&size=600x300&maptype=roadmap&format=png&visual_refresh=true" alt="Google Map of Albany, NY">
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea id="Address" class="materialize-textarea"></textarea>
+                        <label for="Address">Full Address</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="z-depth-2 col s12 white">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="page-footer grey darken-1" id="footer"></footer>
+
+<div id="textCoupon" class="modal">
+    <div class="modal-content deal-detail-modal-content">
+        <h5>Text Coupon</h5>
+        <p>Coupon is not valid</p>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action modal-close waves-effect waves-green btn-flat ">Check Next</button>
+    </div>
+</div>
+
+<div id="qrCodeCoupon" class="modal coupon-info-modal transparent">
+    <div class="modal-content deal-detail-modal-content">
+        <div class="camera-selection">
+            <select id="camera-select"></select>
+        </div>
+
+        <div class="well" style="position: relative;display: inline-block;">
+            <!--<span class="font-size-16">Scan QR Code</span>-->
+            <canvas id="webcodecam-canvas" style="width: 100%; height: 100%"></canvas>
+            <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
+            <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
+            <div class="scanner-laser laser-leftBottom" style="opacity: 0.5;"></div>
+            <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
+        </div>
+
+        <div class="thumbnail" id="result">
+            <p class="white-text" id="scanned-QR"></p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="stop" class="btn-floating modal-action modal-close waves-effect waves-green btn-flat white-text"><i class="material-icons">close</i></button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+        $('.campaign-info-modal').modal({
+            startingTop: '0%',
+            endingTop: '0%'
+        });
+
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
+
+        $('.timepicker').pickatime({
+            default: 'now',
+            twelvehour: true, // change to 12 hour AM/PM clock from 24 hour
+            donetext: 'OK',
+            autoclose: false,
+            vibrate: true // vibrate the device when dragging clock hand
+        });
+        $('select').material_select();
+    });
+
+
+</script>
+
+<!--Import tiles -->
+<script type="text/javascript" src="lib/src/js/tile.js"></script>
+<script type="text/javascript" src="lib/src/js/custom.js"></script>
+
+</body>
+</html>
